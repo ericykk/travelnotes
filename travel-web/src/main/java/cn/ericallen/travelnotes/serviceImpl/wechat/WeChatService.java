@@ -41,6 +41,7 @@ public class WeChatService {
 	 public  static String processRequest(HttpServletRequest request)  {
 
 	  String replyMsg = null;
+
 	  try {
 
 		  xstream = new XStream();
@@ -133,10 +134,9 @@ public class WeChatService {
 		    }
 		   }
 		   weChatXmlResponse.setContent(respContent);
-
-
+		   //将序列化中的类全量名称，用别名替换
+		   xstream.alias("xml",weChatXmlResponse.getClass());
 		   replyMsg = xstream.toXML(weChatXmlResponse);
-		   replyMsg = replyMsg.replace("cn.ericallen.travelnotes.common.model.WeChatXmlEntity", "xml");
 		   //直接回复明文
 		   if(StringUtils.isBlank(encrypType)||"raw".equals(encrypType))
 			   return replyMsg;
