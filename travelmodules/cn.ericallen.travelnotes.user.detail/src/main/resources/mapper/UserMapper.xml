@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--如果没有具体的接口实现类  namespace需要与接口的位置相同 -->
+<mapper namespace="cn.ericallen.travelnotes.dao.user.IUserDao">
+	<resultMap type="cn.ericallen.travelnotes.user.model.User" id="BaseResultMap">
+		<result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+		<result column="CELL_PHONE" property="cellPhone" jdbcType="VARCHAR" />
+		<result column="PLACE" property="place" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- id对应接口中方法的名称 -->
+	<select id="getUserByUserName" parameterType="cn.ericallen.travelnotes.user.model.User"
+		resultMap="BaseResultMap">
+		SELECT
+		u.user_name,
+		u.cell_phone,
+		u.place
+		FROM t_user_data u
+		<where>
+			u.user_name = #{userName,jdbcType=VARCHAR}
+			and u.delete_flag = 0
+		</where>
+	</select>
+</mapper>
