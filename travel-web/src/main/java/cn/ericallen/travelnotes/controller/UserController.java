@@ -38,4 +38,10 @@ public class UserController {
         return mv;
     }
 
+    @RequestMapping("hello")
+    public ModelAndView hello(){
+    	ModelAndView mv = new ModelAndView("hello");
+        return mv;
+    }
+
 }
