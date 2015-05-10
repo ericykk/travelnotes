@@ -123,15 +123,10 @@ create table t_travel_find_travelers(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
 apply_openid VARCHAR(50) not null  comment '申请用户登录令牌即唯一标识',
 release_time datetime NOT NULL  COMMENT '发布信息时间',
-apply_reason varchar(200) not null COMMENT '申请原由',
-apply_status varchar(10) not null default '0' comment '申请状态  0 未审批  1 审批通过  2  审批未通过',
-apply_reply  varchar(100) not null COMMENT '审批回复',
-approval_time datetime default NULL  COMMENT '审批时间',
+find_travelers_content varchar(200) not null COMMENT '找驴友信息',
 delete_flag tinyint(4) not null default '0' comment '是否删除标志',
 create_time datetime not NULL COMMENT '创建时间',
-landlord_openid VARCHAR(50) not null comment '地主用户登录令牌即唯一标识',
-apply_type varchar(10) not null default '0' comment '申请类型   0  申请成为地主   1  申请到地主地盘做客',
 update_time timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
 primary key(id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT ='申请信息表';
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT ='找驴友信息表';
 

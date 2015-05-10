@@ -15,14 +15,14 @@
 	  <snapshotRepository>
 	    <id>nexus-snapshots</id>
 	    <name>nexus distribution snapshot repository</name>
-	    <url>http://192.168.99.48:8081/nexus/content/repositories/snapshots</url>
+	    <url>http://192.168.38.21:8081/nexus/content/repositories/snapshots</url>
 	  </snapshotRepository>
 	</distributionManagement>
    <repositories>
 		<repository>
 			<id>nexus</id>
 			<name>Team Nexus Repository</name>
-            <url>http://192.168.99.48:8081/nexus/content/groups/public</url>
+            <url>http://192.168.38.21:8081/nexus/content/groups/public</url>
 		</repository>
 	</repositories>
 	<build>
