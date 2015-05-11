@@ -15,7 +15,24 @@ login_account_type varchar(10) default null comment '登录账户类型',
 PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT ='登录用户信息';
 --游记记录表
-t_travel_note_data
+create table t_travel_note_data(
+id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
+openid VARCHAR(50) not null comment '游记发表人',
+travel_time datetime not null comment '旅行时间',
+travel_place varchar(50) not null comment '旅行地点',
+travel_feature varchar(100) not null comment '旅行特点',
+traveler_number int(4) not null comment '旅行人数',
+travel_cost int(6) NOT NULL  COMMENT '旅行花费',
+travel_reminder varchar(200) default null comment '注意事项',
+label varchar(50) not null comment '标签',
+travel_content varchar(3000) NOT NULL COMMENT '游记内容',
+release_time datetime not NULL COMMENT '游记发布时间',
+delete_flag tinyint(4) not null default '0' comment '是否删除标志',
+create_time datetime not NULL COMMENT '创建时间',
+update_time timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+primary key(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT ='游记记录表';
+
 --游记统计表(浏览次数，评论次数，点赞次数，分享次数，收藏次数)
 create table t_travel_note_statistic(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
