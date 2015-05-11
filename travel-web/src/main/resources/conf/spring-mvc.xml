@@ -12,7 +12,7 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-    <!-- 扫描controller（controller层注入） -->
+    <!-- 扫描controller（controller层注入） 可以使用<context:annotation-config/>代替-->
    <context:component-scan base-package="cn.ericallen.travelnotes.controller"/>
 
    <!-- 避免IE在ajax请求时，返回json出现下载 -->
@@ -24,7 +24,11 @@
         </property>
     </bean>
 
-   <!-- 对模型视图添加前后缀 -->
-     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    <!-- 对模型视图添加前后缀 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
      p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean -->
+	<!-- 提供了数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持-->
+    <mvc:annotation-driven />
+
 </beans>
