@@ -7,4 +7,11 @@
   </parent>
   <artifactId>cn.ericallen.travelnotes.user</artifactId>
   <name>cn.ericallen.travelnotes.user</name>
+  <dependencies>
+  	<dependency>
+		<artifactId>cn.ericallen.travelnotes.common</artifactId>
+		<groupId>com.travelnotes</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

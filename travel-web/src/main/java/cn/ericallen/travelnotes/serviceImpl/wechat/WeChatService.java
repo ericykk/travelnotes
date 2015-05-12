@@ -90,15 +90,15 @@ public class WeChatService {
 			   weChatXmlResponse.setMsgType("text");
 			   String requestContent = weChatXmlRequest.getContent();
 			   User user = new User();
-			   user.setUserName(requestContent);
+			   user.setNickName(requestContent);
 
 			   @SuppressWarnings("resource")
 			   ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:conf/spring-mybatis.xml"});
 
 			   userService = (IUserService) context.getBean("userService");
-			   user =  userService.getUserByUserName(user);
-			   if(user!=null)
-			   respContent = user.getUserName()+"\n"+user.getCellPhone()+"\n"+user.getPlace();
+//			   user =  userService.getUserByUserName(user);
+//			   if(user!=null)
+//			   respContent = user.getUserName()+"\n"+user.getCellPhone()+"\n"+user.getPlace();
 		   }
 		   // 图片消息
 		   else if (msgType.equals("image")) {

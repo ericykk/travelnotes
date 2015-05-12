@@ -11,10 +11,18 @@ import cn.ericallen.travelnotes.user.model.User;
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IUserDao userDao;
-	@Override
-	public  User getUserByUserName(User user) {
 
-		return userDao.getUserByUserName(user);
+	@Override
+	public User getUserByOpenId(String openId) {
+		return userDao.getUserByOpenId(openId);
+	}
+	@Override
+	public void saveUserData(User user) {
+        userDao.saveUserData(user);
+	}
+	@Override
+	public int updateUserData(User user) {
+		return userDao.updateUserData(user);
 	}
 
 }

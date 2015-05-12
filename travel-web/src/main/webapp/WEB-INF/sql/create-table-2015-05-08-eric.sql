@@ -1,7 +1,7 @@
 --用户表
 create table t_travel_note_user(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
-openid VARCHAR(50) not null comment '登录令牌即唯一标识',
+openid VARCHAR(50) not null unique comment '登录令牌即唯一标识',
 nickname VARCHAR(50) DEFAULT null comment '用户昵称',
 sex CHAR(1)  DEFAULT null comment '性别',
 city varchar(50)  DEFAULT null COMMENT '用户所在城市',
@@ -9,7 +9,7 @@ province varchar(50)  DEFAULT null COMMENT '用户所在省份',
 country varchar(50)  DEFAULT null COMMENT '用户所在国家',
 delete_flag tinyint(4) not null default '0' comment '是否删除标志',
 create_time datetime not NULL COMMENT '创建时间',
-update_time timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '用户关注时间',
+update_time timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
 login_time datetime not NULL COMMENT '登录时间',
 login_account_type varchar(10) default null comment '登录账户类型',
 PRIMARY KEY(id)
