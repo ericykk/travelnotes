@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ericallen.travelnotes.dao.notes.ITravelNotesCommentDao" >
+  <resultMap id="BaseResultMap" type="cn.ericallen.travelnotes.notes.model.TravelNotesComment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="pk_travel_note" property="pkTravelNote" jdbcType="VARCHAR" />
+    <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
+    <result column="comment_status" property="commentStatus" jdbcType="VARCHAR" />
+    <result column="comment_user" property="commentUser" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_hidden" property="isHidden" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pk_travel_note, comment_content, comment_time, comment_status, comment_user,
+    delete_flag, create_time, update_time, is_hidden
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_travel_note_comment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_travel_note_comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesComment" >
+    insert into t_travel_note_comment (id, pk_travel_note, comment_content,
+      comment_time, comment_status, comment_user,
+      delete_flag, create_time, update_time,
+      is_hidden)
+    values (#{id,jdbcType=BIGINT}, #{pkTravelNote,jdbcType=BIGINT}, #{commentContent,jdbcType=VARCHAR},
+      #{commentTime,jdbcType=TIMESTAMP}, #{commentStatus,jdbcType=VARCHAR}, #{commentUser,jdbcType=VARCHAR},
+      #{deleteFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+      #{isHidden,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesComment" >
+    insert into t_travel_note_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkTravelNote != null" >
+        pk_travel_note,
+      </if>
+      <if test="commentContent != null" >
+        comment_content,
+      </if>
+      <if test="commentTime != null" >
+        comment_time,
+      </if>
+      <if test="commentStatus != null" >
+        comment_status,
+      </if>
+      <if test="commentUser != null" >
+        comment_user,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isHidden != null" >
+        is_hidden,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkTravelNote != null" >
+        #{pkTravelNote,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTime != null" >
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentStatus != null" >
+        #{commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUser != null" >
+        #{commentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isHidden != null" >
+        #{isHidden,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesComment" >
+    update t_travel_note_comment
+    <set >
+      <if test="pkTravelNote != null" >
+        pk_travel_note = #{pkTravelNote,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTime != null" >
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentStatus != null" >
+        comment_status = #{commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUser != null" >
+        comment_user = #{commentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isHidden != null" >
+        is_hidden = #{isHidden,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.domain.TravelNotesComment" >
+    update t_travel_note_comment
+    set pk_travel_note = #{pkTravelNote,jdbcType=VARCHAR},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      comment_status = #{commentStatus,jdbcType=VARCHAR},
+      comment_user = #{commentUser,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_hidden = #{isHidden,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

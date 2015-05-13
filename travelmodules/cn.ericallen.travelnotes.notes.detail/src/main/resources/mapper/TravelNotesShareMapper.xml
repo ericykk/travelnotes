@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ericallen.travelnotes.dao.notes.TravelNotesShareMapper" >
+  <resultMap id="BaseResultMap" type="cn.ericallen.travelnotes.notes.model.TravelNotesShare" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="pk_travel_note" property="pkTravelNote" jdbcType="VARCHAR" />
+    <result column="share_time" property="shareTime" jdbcType="TIMESTAMP" />
+    <result column="share_user" property="shareUser" jdbcType="VARCHAR" />
+    <result column="share_type" property="shareType" jdbcType="VARCHAR" />
+    <result column="share_link" property="shareLink" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pk_travel_note, share_time, share_user, share_type, share_link, delete_flag, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_travel_note_share
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_travel_note_share
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesShare" >
+    insert into t_travel_note_share (id, pk_travel_note, share_time, 
+      share_user, share_type, share_link, 
+      delete_flag, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{pkTravelNote,jdbcType=VARCHAR}, #{shareTime,jdbcType=TIMESTAMP}, 
+      #{shareUser,jdbcType=VARCHAR}, #{shareType,jdbcType=VARCHAR}, #{shareLink,jdbcType=VARCHAR}, 
+      #{deleteFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesShare" >
+    insert into t_travel_note_share
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pkTravelNote != null" >
+        pk_travel_note,
+      </if>
+      <if test="shareTime != null" >
+        share_time,
+      </if>
+      <if test="shareUser != null" >
+        share_user,
+      </if>
+      <if test="shareType != null" >
+        share_type,
+      </if>
+      <if test="shareLink != null" >
+        share_link,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pkTravelNote != null" >
+        #{pkTravelNote,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTime != null" >
+        #{shareTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shareUser != null" >
+        #{shareUser,jdbcType=VARCHAR},
+      </if>
+      <if test="shareType != null" >
+        #{shareType,jdbcType=VARCHAR},
+      </if>
+      <if test="shareLink != null" >
+        #{shareLink,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesShare" >
+    update t_travel_note_share
+    <set >
+      <if test="pkTravelNote != null" >
+        pk_travel_note = #{pkTravelNote,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTime != null" >
+        share_time = #{shareTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shareUser != null" >
+        share_user = #{shareUser,jdbcType=VARCHAR},
+      </if>
+      <if test="shareType != null" >
+        share_type = #{shareType,jdbcType=VARCHAR},
+      </if>
+      <if test="shareLink != null" >
+        share_link = #{shareLink,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesShare" >
+    update t_travel_note_share
+    set pk_travel_note = #{pkTravelNote,jdbcType=VARCHAR},
+      share_time = #{shareTime,jdbcType=TIMESTAMP},
+      share_user = #{shareUser,jdbcType=VARCHAR},
+      share_type = #{shareType,jdbcType=VARCHAR},
+      share_link = #{shareLink,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -2,9 +2,6 @@ package cn.ericallen.travelnotes.test;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.enterprise.inject.New;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
