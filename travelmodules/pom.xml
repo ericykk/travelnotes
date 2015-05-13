@@ -13,7 +13,20 @@
         <spring.version>3.2.4.RELEASE</spring.version>
 		<maven.test.skip>true</maven.test.skip>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
-    </properties>
+  </properties>
+
+ 	<modules>
+		<module>cn.ericallen.travelnotes.user</module>
+		<module>cn.ericallen.travelnotes.common</module>
+		<module>cn.ericallen.travelnotes.user.detail</module>
+		<module>cn.ericallen.travelnotes.notes</module>
+		<module>cn.ericallen.travelnotes.notes.detail</module>
+		<module>cn.ericallen.travelnotes.landlord</module>
+		<module>cn.ericallen.travelnotes.landlord.detail</module>
+		<module>cn.ericallen.travelnotes.findtraveler</module>
+		<module>cn.ericallen.travelnotes.findtraveler.detail</module>
+	</modules>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -125,7 +138,7 @@
 	       <version>4.11</version>
 	       <scope>test</scope>
 	   </dependency>
-	</dependencies>
+	  </dependencies>
 	<build>
         <finalName>travelmodules</finalName>
         <plugins>
@@ -139,9 +152,4 @@
             </plugin>
         </plugins>
     </build>
-	<modules>
-		<module>cn.ericallen.travelnotes.user</module>
-		<module>cn.ericallen.travelnotes.common</module>
-		<module>cn.ericallen.travelnotes.user.detail</module>
-	</modules>
 </project>

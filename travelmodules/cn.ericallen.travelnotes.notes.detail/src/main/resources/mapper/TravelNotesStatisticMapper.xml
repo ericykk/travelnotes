@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--如果没有具体的接口实现类  namespace需要与接口的位置相同 -->
+<mapper namespace="cn.ericallen.travelnotes.dao.notes.ITravelNotesStatisticDao">
+	<resultMap type="cn.ericallen.travelnotes.notes.model.TravelNotesStatistic" id="BaseResultMap">
+		<result column="ID" property="id" jdbcType="BIGINT" />
+		<result column="PK_TRAVEL_NOTE" property="pkTravelNote" jdbcType="VARCHAR" />
+		<result column="BROWSE_NUMBER" property="browseNumber" jdbcType="BIGINT" />
+		<result column="COMMENT_NUMBER" property="commentNumber" jdbcType="BIGINT" />
+		<result column="PRAISE_NUMBER" property="praiseNumber" jdbcType="BIGINT" />
+		<result column="SHARE_NUMBER" property="shareNumber" jdbcType="BIGINT" />
+		<result column="COLLECTION_NUMBER" property="collectionNumber" jdbcType="BIGINT" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="TINYINT" />
+	</resultMap>
+
+	<sql id="BaseResult">
+		PK_TRAVEL_NOTE,
+		BROWSE_NUMBER,
+		COMMENT_NUMBER,
+		PRAISE_NUMBER,
+		SHARE_NUMBER,
+		COLLECTION_NUMBER
+	</sql>
+	<!-- 查询游记统计信息-->
+	<select id="getTravelNotesStatisticByCondition" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesStatistic" resultMap="BaseResultMap">
+		SELECT
+		<include refid="BaseResult"></include>
+		FROM t_travel_note_statistic
+		<where>
+			delete_flag = 0
+			<if test="pkTravelNote != null">
+				and pk_travel_note = #{pkTravelNote,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+		<if test="browseNumber != null and browseNumber != 0">
+			order by browse_number desc
+		</if>
+		<if test="commentNumber != null and commentNumber != 0">
+			order by  comment_number desc
+		</if>
+		<if test="praiseNumber != null and praiseNumber != 0">
+			order by  praise_number desc
+		</if>
+		<if test="shareNumber != null and shareNumber != 0">
+			order by  share_number desc
+		</if>
+		<if test="collectionNumber != null and collectionNumber != 0">
+			order by  collection_number desc
+		</if>
+	</select>
+
+	<!--  保存游记统计信息-->
+	<insert id="saveTravelNotesStatistic" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesStatistic">
+		insert into t_travel_note_statistic
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="pkTravelNote != null">
+					PK_TRAVEL_NOTE,
+				</if>
+				<if test="browseNumber != null">
+					BROWSE_NUMBER,
+				</if>
+				<if test="commentNumber != null">
+					COMMENT_NUMBER,
+				</if>
+				<if test="praiseNumber != null">
+					PRAISE_NUMBER,
+				</if>
+				<if test="shareNumber != null">
+					SHARE_NUMBER,
+				</if>
+				<if test="collectionNumber != null">
+					COLLECTION_NUMBER,
+				</if>
+				<if test="createTime != null">
+					CREATE_TIME,
+				</if>
+			</trim>
+
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="pkTravelNote != null">
+					#{pkTravelNote,jdbcType=VARCHAR},
+				</if>
+				<if test="browseNumber != null">
+					#{browseNumber,jdbcType=BIGINT},
+				</if>
+				<if test="commentNumber != null">
+					#{commentNumber,jdbcType=BIGINT},
+				</if>
+				<if test="praiseNumber != null">
+					#{praiseNumber,jdbcType=BIGINT},
+				</if>
+				<if test="shareNumber != null">
+					#{shareNumber,jdbcType=BIGINT},
+				</if>
+				<if test="collectionNumber != null">
+					#{collectionNumber,jdbcType=BIGINT},
+				</if>
+				<if test="createTime != null">
+					#{createTime,jdbcType=DATE},
+				</if>
+			</trim>
+	</insert>
+	<!-- 更新游记统计信息 -->
+	<update id="updateTravelNotesStatistic" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotesStatistic">
+		update t_travel_note_statistic
+			<set>
+				<if test="browseNumber != null and browseNumber !=0">
+					BROWSE_NUMBER = BROWSE_NUMBER+1,
+				</if>
+				<if test="commentNumber != null and commentNumber!=0">
+					COMMENT_NUMBER = COMMENT_NUMBER+1,
+				</if>
+				<if test="praiseNumber != null and praiseNumber!=0">
+					PRAISE_NUMBER = PRAISE_NUMBER+1,
+				</if>
+				<if test="shareNumber != null and shareNumber!=0">
+					SHARE_NUMBER = SHARE_NUMBER+1,
+				</if>
+				<if test="collectionNumber != null and collectionNumber!=0">
+					COLLECTION_NUMBER = COLLECTION_NUMBER+1,
+				</if>
+			</set>
+			where pk_travel_note = #{pkTravelNote,jdbcType=VARCHAR}
+	</update>
+</mapper>

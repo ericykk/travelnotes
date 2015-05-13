@@ -171,6 +171,16 @@
 			<artifactId>cn.ericallen.travelnotes.common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.travelnotes</groupId>
+			<artifactId>cn.ericallen.travelnotes.notes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.travelnotes</groupId>
+			<artifactId>cn.ericallen.travelnotes.notes.detail</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
         <!-- log end -->
     </dependencies>
     <build>

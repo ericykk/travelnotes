@@ -11,6 +11,12 @@
         <dependent-module archiveName="cn.ericallen.travelnotes.common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cn.ericallen.travelnotes.common/cn.ericallen.travelnotes.common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="cn.ericallen.travelnotes.notes-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cn.ericallen.travelnotes.notes/cn.ericallen.travelnotes.notes">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cn.ericallen.travelnotes.notes.detail-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cn.ericallen.travelnotes.notes.detail/cn.ericallen.travelnotes.notes.detail">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="travel-web"/>
         <property name="java-output-path" value="/travel-web/target/classes"/>
     </wb-module>

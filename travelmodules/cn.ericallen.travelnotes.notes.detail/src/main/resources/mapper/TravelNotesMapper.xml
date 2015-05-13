@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--如果没有具体的接口实现类  namespace需要与接口的位置相同 -->
+<mapper namespace="cn.ericallen.travelnotes.dao.notes.ITravelNotesDao">
+	<resultMap type="cn.ericallen.travelnotes.notes.model.TravelNotes" id="BaseResultMap">
+		<result column="PK_TRAVEL_NOTE" property="pkTravelNote" jdbcType="VARCHAR" />
+		<result column="OPENID" property="openId" jdbcType="VARCHAR" />
+		<result column="TRAVEL_TIME" property="travelTime" jdbcType="DATE" />
+		<result column="TRAVEL_PLACE" property="travelPlace" jdbcType="VARCHAR" />
+		<result column="TRAVEL_FEATURE" property="travelFeature" jdbcType="VARCHAR" />
+		<result column="TRAVELER_NUMBER" property="travelerNumber" jdbcType="DECIMAL" />
+		<result column="TRAVEL_COST" property="travelCost" jdbcType="DECIMAL" />
+		<result column="TRAVEL_REMINDER" property="travelReminder" jdbcType="VARCHAR" />
+		<result column="TRAVEL_LABEL" property="travelLabel" jdbcType="VARCHAR" />
+		<result column="TRAVEL_CONTENT" property="travelContent" jdbcType="VARCHAR" />
+		<result column="RELEASE_TIME" property="releaseTime" jdbcType="DATE" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="TINYINT" />
+	</resultMap>
+
+	<sql id="BaseResult">
+		PK_TRAVEL_NOTE,
+		OPENID,
+		TRAVEL_TIME,
+		TRAVEL_PLACE,
+		TRAVEL_FEATURE,
+		TRAVELER_NUMBER,
+		TRAVEL_COST,
+		TRAVEL_REMINDER,
+		TRAVEL_LABEL,
+		TRAVEL_CONTENT,
+		RELEASE_TIME,
+		CREATE_TIME,
+		DELETE_FLAG
+	</sql>
+	<!-- 根据条件查询游记信息 -->
+	<select id="getTravelNotesByCondition" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotes" resultMap="BaseResultMap">
+		SELECT
+		<include refid="BaseResult"></include>
+		FROM t_travel_note_data
+		<where>
+			delete_flag = 0
+			<if test="pkTravelNote != null">
+				and pk_travel_note = #{pkTravelNote,jdbcType=BIGINT}
+			</if>
+			<if test="openId != null">
+				and openid = #{openId,jdbcType=VARCHAR}
+			</if>
+			<if test="travelPlace != null">
+				and travel_place like #{travelPlace,jdbcType=VARCHAR}
+			</if>
+			<if test="travelLabel != null">
+				and travel_label = #{travelLabel,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by release_time desc
+	</select>
+
+	<!--  保存游记信息-->
+	<insert id="saveTravelNotes" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotes">
+		insert into t_travel_note_data
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="pkTravelNote != null">
+					PK_TRAVEL_NOTE,
+				</if>
+				<if test="openId != null">
+					OPENID,
+				</if>
+				<if test="travelTime != null">
+					TRAVEL_TIME,
+				</if>
+				<if test="travelPlace != null">
+					TRAVEL_PLACE,
+				</if>
+				<if test="travelFeature != null">
+					TRAVEL_FEATURE,
+				</if>
+				<if test="travelerNumber != null">
+					TRAVELER_NUMBER,
+				</if>
+				<if test="travelCost != null">
+					TRAVEL_COST,
+				</if>
+				<if test="travelReminder != null">
+					TRAVEL_REMINDER,
+				</if>
+				<if test="travelLabel != null">
+					TRAVEL_LABEL,
+				</if>
+				<if test="travelContent != null">
+					TRAVEL_CONTENT,
+				</if>
+				<if test="releaseTime != null">
+					RELEASE_TIME,
+				</if>
+				<if test="createTime != null">
+					CREATE_TIME,
+				</if>
+			</trim>
+
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="pkTravelNote != null">
+					uuid(),
+				</if>
+				<if test="openId != null">
+					#{openId,jdbcType=VARCHAR},
+				</if>
+				<if test="travelTime != null">
+					#{travelTime,jdbcType=DATE},
+				</if>
+				<if test="travelPlace != null">
+					#{travelPlace,jdbcType=VARCHAR},
+				</if>
+				<if test="travelFeature != null">
+					#{travelFeature,jdbcType=VARCHAR},
+				</if>
+				<if test="travelerNumber != null">
+					#{travelerNumber,jdbcType=DECIMAL},
+				</if>
+				<if test="travelCost != null">
+					#{travelCost,jdbcType=DECIMAL},
+				</if>
+				<if test="travelReminder != null">
+					#{travelReminder,jdbcType=VARCHAR},
+				</if>
+				<if test="travelLabel != null">
+					#{travelLabel,jdbcType=VARCHAR},
+				</if>
+				<if test="travelContent != null">
+					#{travelContent,jdbcType=VARCHAR},
+				</if>
+				<if test="releaseTime != null">
+					#{releaseTime,jdbcType=DATE},
+				</if>
+				<if test="createTime != null">
+					#{createTime,jdbcType=DATE},
+				</if>
+			</trim>
+	</insert>
+	<!-- 更新游记信息 -->
+	<update id="updateTravelNotes" parameterType="cn.ericallen.travelnotes.notes.model.TravelNotes">
+		update t_travel_note_data
+			<set>
+				<if test="travelTime != null">
+					travel_time = #{travelTime,jdbcType=DATE},
+				</if>
+				<if test="travelPlace != null">
+					travel_place = #{travelPlace,jdbcType=VARCHAR},
+				</if>
+				<if test="travelFeature != null">
+					travel_feature = #{travelFeature,jdbcType=VARCHAR},
+				</if>
+				<if test="travelerNumber != null">
+					traveler_number = #{travelerNumber,jdbcType=DECIMAL},
+				</if>
+				<if test="travelCost != null">
+					travel_cost = #{travelCost,jdbcType=DECIMAL},
+				</if>
+				<if test="travelReminder != null">
+					travel_reminder = #{travelReminder,jdbcType=VARCHAR},
+				</if>
+				<if test="travelLabel != null">
+					travel_label = #{travelLabel,jdbcType=VARCHAR},
+				</if>
+				<if test="travelContent != null">
+					travel_content = #{travelContent,jdbcType=VARCHAR},
+				</if>
+				<if test="releaseTime != null">
+					release_time = #{releaseTime,jdbcType=DATE},
+				</if>
+				<if test="deleteFlag != null">
+					DELETE_FLAG = #{deleteFlag,jdbcType=TINYINT},
+				</if>
+			</set>
+			where PK_TRAVEL_NOTE = #{pkTravelNote,jdbcType=VARCHAR}
+	</update>
+</mapper>

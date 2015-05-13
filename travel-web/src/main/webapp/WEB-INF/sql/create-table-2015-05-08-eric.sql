@@ -1,6 +1,6 @@
 --用户表
 create table t_travel_note_user(
-id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
+id bigint(20) NOT NULL AUTO_INCREMENT  comment '主键',
 openid VARCHAR(50) not null unique comment '登录令牌即唯一标识',
 nickname VARCHAR(50) DEFAULT null comment '用户昵称',
 sex CHAR(1)  DEFAULT null comment '性别',
@@ -16,7 +16,7 @@ PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT ='登录用户信息';
 --游记记录表
 create table t_travel_note_data(
-id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
+pk_travel_note varchar(50) NOT NULL  default comment '主键',
 openid VARCHAR(50) not null comment '游记发表人',
 travel_time datetime not null comment '旅行时间',
 travel_place varchar(50) not null comment '旅行地点',
@@ -24,19 +24,19 @@ travel_feature varchar(100) not null comment '旅行特点',
 traveler_number int(4) not null comment '旅行人数',
 travel_cost int(6) NOT NULL  COMMENT '旅行花费',
 travel_reminder varchar(200) default null comment '注意事项',
-label varchar(50) not null comment '标签',
+travel_label varchar(50) not null comment '标签',
 travel_content varchar(3000) NOT NULL COMMENT '游记内容',
 release_time datetime not NULL COMMENT '游记发布时间',
 delete_flag tinyint(4) not null default '0' comment '是否删除标志',
 create_time datetime not NULL COMMENT '创建时间',
 update_time timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-primary key(id)
+primary key(pk_travel_note)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT ='游记记录表';
 
 --游记统计表(浏览次数，评论次数，点赞次数，分享次数，收藏次数)
 create table t_travel_note_statistic(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
-pk_travel_note bigint(20) NOT NULL comment '游记记录主键' unique,
+pk_travel_note varchar(50) NOT NULL comment '游记记录主键' unique,
 browse_number int(5) NOT NULL default 0 COMMENT '浏览次数',
 comment_number int(5) NOT NULL default 0 COMMENT '评论次数',
 praise_number int(5) NOT NULL default 0 COMMENT '获赞次数',
@@ -51,7 +51,7 @@ primary key(id)
 --游记评论记录表(游记评论回复 找驴友信息评论)
 create table t_travel_note_comment(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
-pk_travel_note bigint(20) NOT NULL comment '游记记录主键',
+pk_travel_note varchar(50) NOT NULL comment '游记记录主键',
 comment_content varchar(100) default NULL COMMENT '评论内容',
 comment_time datetime NOT NULL  COMMENT '评论时间',
 comment_status varchar(10) NOT NULL default 'Y' COMMENT '评论状态 Y有效 N 无效',
@@ -66,7 +66,7 @@ primary key(id)
 --游记浏览记录表
 create table t_travel_note_browse(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
-pk_travel_note bigint(20) NOT NULL comment '游记记录主键',
+pk_travel_note varchar(50) NOT NULL comment '游记记录主键',
 browse_time datetime NOT NULL  COMMENT '浏览时间',
 delete_flag tinyint(4) not null default '0' comment '是否删除标志',
 create_time datetime not NULL COMMENT '创建时间',
@@ -77,7 +77,7 @@ primary key(id)
 --游记分享记录表
 create table t_travel_note_share(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
-pk_travel_note bigint(20) NOT NULL comment '游记记录主键',
+pk_travel_note varchar(50) NOT NULL comment '游记记录主键',
 share_time datetime NOT NULL  COMMENT '分享时间',
 share_user varchar(50) not null COMMENT '分享人',
 share_type varchar(10) not null COMMENT '分享渠道即通过什么分享 ，分享到哪里',
@@ -91,7 +91,7 @@ primary key(id)
 --游记点赞记录表
 create table t_travel_note_praise(
 id bigint(20) NOT NULL AUTO_INCREMENT comment '主键',
-pk_travel_note bigint(20) NOT NULL comment '游记记录主键',
+pk_travel_note varchar(50) NOT NULL comment '游记记录主键',
 praise_time datetime NOT NULL  COMMENT '点赞时间',
 praise_user varchar(50) not null COMMENT '点赞人',
 delete_flag tinyint(4) not null default '0' comment '是否删除标志',
