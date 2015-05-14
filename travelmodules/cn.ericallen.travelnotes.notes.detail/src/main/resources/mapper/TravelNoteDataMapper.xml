@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ericallen.travelnotes.dao.notes.TravelNoteDataMapper" >
+  <resultMap id="BaseResultMap" type="cn.ericallen.travelnotes.notes.model.TravelNoteData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="travel_time" property="travelTime" jdbcType="TIMESTAMP" />
+    <result column="travel_place" property="travelPlace" jdbcType="VARCHAR" />
+    <result column="travel_feature" property="travelFeature" jdbcType="VARCHAR" />
+    <result column="traveler_number" property="travelerNumber" jdbcType="INTEGER" />
+    <result column="travel_cost" property="travelCost" jdbcType="INTEGER" />
+    <result column="travel_reminder" property="travelReminder" jdbcType="VARCHAR" />
+    <result column="travel_label" property="travelLabel" jdbcType="VARCHAR" />
+    <result column="travel_content" property="travelContent" jdbcType="VARCHAR" />
+    <result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, openid, travel_time, travel_place, travel_feature, traveler_number, travel_cost, 
+    travel_reminder, travel_label, travel_content, release_time, delete_flag, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_travel_note_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_travel_note_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.ericallen.travelnotes.notes.model.TravelNoteData" >
+    insert into t_travel_note_data (id, openid, travel_time, 
+      travel_place, travel_feature, traveler_number, 
+      travel_cost, travel_reminder, travel_label, 
+      travel_content, release_time, delete_flag, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, #{travelTime,jdbcType=TIMESTAMP}, 
+      #{travelPlace,jdbcType=VARCHAR}, #{travelFeature,jdbcType=VARCHAR}, #{travelerNumber,jdbcType=INTEGER}, 
+      #{travelCost,jdbcType=INTEGER}, #{travelReminder,jdbcType=VARCHAR}, #{travelLabel,jdbcType=VARCHAR}, 
+      #{travelContent,jdbcType=VARCHAR}, #{releaseTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ericallen.travelnotes.notes.model.TravelNoteData" >
+    insert into t_travel_note_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="travelTime != null" >
+        travel_time,
+      </if>
+      <if test="travelPlace != null" >
+        travel_place,
+      </if>
+      <if test="travelFeature != null" >
+        travel_feature,
+      </if>
+      <if test="travelerNumber != null" >
+        traveler_number,
+      </if>
+      <if test="travelCost != null" >
+        travel_cost,
+      </if>
+      <if test="travelReminder != null" >
+        travel_reminder,
+      </if>
+      <if test="travelLabel != null" >
+        travel_label,
+      </if>
+      <if test="travelContent != null" >
+        travel_content,
+      </if>
+      <if test="releaseTime != null" >
+        release_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="travelTime != null" >
+        #{travelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="travelPlace != null" >
+        #{travelPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="travelFeature != null" >
+        #{travelFeature,jdbcType=VARCHAR},
+      </if>
+      <if test="travelerNumber != null" >
+        #{travelerNumber,jdbcType=INTEGER},
+      </if>
+      <if test="travelCost != null" >
+        #{travelCost,jdbcType=INTEGER},
+      </if>
+      <if test="travelReminder != null" >
+        #{travelReminder,jdbcType=VARCHAR},
+      </if>
+      <if test="travelLabel != null" >
+        #{travelLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="travelContent != null" >
+        #{travelContent,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null" >
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ericallen.travelnotes.notes.model.TravelNoteData" >
+    update t_travel_note_data
+    <set >
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="travelTime != null" >
+        travel_time = #{travelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="travelPlace != null" >
+        travel_place = #{travelPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="travelFeature != null" >
+        travel_feature = #{travelFeature,jdbcType=VARCHAR},
+      </if>
+      <if test="travelerNumber != null" >
+        traveler_number = #{travelerNumber,jdbcType=INTEGER},
+      </if>
+      <if test="travelCost != null" >
+        travel_cost = #{travelCost,jdbcType=INTEGER},
+      </if>
+      <if test="travelReminder != null" >
+        travel_reminder = #{travelReminder,jdbcType=VARCHAR},
+      </if>
+      <if test="travelLabel != null" >
+        travel_label = #{travelLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="travelContent != null" >
+        travel_content = #{travelContent,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null" >
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ericallen.travelnotes.notes.model.TravelNoteData" >
+    update t_travel_note_data
+    set openid = #{openid,jdbcType=VARCHAR},
+      travel_time = #{travelTime,jdbcType=TIMESTAMP},
+      travel_place = #{travelPlace,jdbcType=VARCHAR},
+      travel_feature = #{travelFeature,jdbcType=VARCHAR},
+      traveler_number = #{travelerNumber,jdbcType=INTEGER},
+      travel_cost = #{travelCost,jdbcType=INTEGER},
+      travel_reminder = #{travelReminder,jdbcType=VARCHAR},
+      travel_label = #{travelLabel,jdbcType=VARCHAR},
+      travel_content = #{travelContent,jdbcType=VARCHAR},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

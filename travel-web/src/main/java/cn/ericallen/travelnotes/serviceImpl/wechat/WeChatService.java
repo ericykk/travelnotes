@@ -2,6 +2,7 @@ package cn.ericallen.travelnotes.serviceImpl.wechat;
 
 
 import java.io.BufferedReader;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
@@ -18,17 +19,12 @@ import cn.ericallen.travelnotes.common.base.TravelNoteConstant;
 import cn.ericallen.travelnotes.common.model.WeChatXmlEntity;
 import cn.ericallen.travelnotes.common.wechat.AesException;
 import cn.ericallen.travelnotes.common.wechat.WXBizMsgCrypt;
-import cn.ericallen.travelnotes.service.user.IUserService;
-import cn.ericallen.travelnotes.user.model.User;
-
 import com.thoughtworks.xstream.XStream;
 
 @Service
 public class WeChatService {
 
 	private static XStream xstream =null;
-
-	private static IUserService userService;
 
 
 	/**
@@ -89,13 +85,11 @@ public class WeChatService {
 		   if (msgType.equals("text")) {
 			   weChatXmlResponse.setMsgType("text");
 			   String requestContent = weChatXmlRequest.getContent();
-			   User user = new User();
-			   user.setNickName(requestContent);
 
 			   @SuppressWarnings("resource")
 			   ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:conf/spring-mybatis.xml"});
 
-			   userService = (IUserService) context.getBean("userService");
+//			   userService = (IUserService) context.getBean("userService");
 //			   user =  userService.getUserByUserName(user);
 //			   if(user!=null)
 //			   respContent = user.getUserName()+"\n"+user.getCellPhone()+"\n"+user.getPlace();

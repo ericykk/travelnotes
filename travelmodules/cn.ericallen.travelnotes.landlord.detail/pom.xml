@@ -8,4 +8,11 @@
   <artifactId>cn.ericallen.travelnotes.landlord.detail</artifactId>
   <name>cn.ericallen.travelnotes.landlord.detail</name>
   <description>cn.ericallen.travelnotes.landlord.detail</description>
+  <dependencies>
+  	<dependency>
+  		<artifactId>cn.ericallen.travelnotes.landlord</artifactId>
+  		<groupId>com.travelnotes</groupId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

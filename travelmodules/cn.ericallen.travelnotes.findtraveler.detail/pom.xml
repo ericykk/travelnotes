@@ -8,4 +8,11 @@
   <artifactId>cn.ericallen.travelnotes.findtraveler.detail</artifactId>
   <name>cn.ericallen.travelnotes.findtraveler.detail</name>
   <description>cn.ericallen.travelnotes.findtraveler.detail</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.travelnotes</groupId>
+  		<artifactId>cn.ericallen.travelnotes.findtraveler</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
